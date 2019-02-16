@@ -1,0 +1,1 @@
+cmd_/home/tahsincan/Desktop/CENG536/Project2/CharDev/chardev.ko := ld -r -m elf_x86_64 -z max-page-size=0x200000 -T ./scripts/module-common.lds --build-id  -o /home/tahsincan/Desktop/CENG536/Project2/CharDev/chardev.ko /home/tahsincan/Desktop/CENG536/Project2/CharDev/chardev.o /home/tahsincan/Desktop/CENG536/Project2/CharDev/chardev.mod.o ;  true

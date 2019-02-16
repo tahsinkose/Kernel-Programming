@@ -1,0 +1,1 @@
+cmd_/home/tahsincan/Desktop/CENG536/Project2/pseudoCDD/reminder.ko := ld -r -m elf_x86_64 -z max-page-size=0x200000 -T ./scripts/module-common.lds --build-id  -o /home/tahsincan/Desktop/CENG536/Project2/pseudoCDD/reminder.ko /home/tahsincan/Desktop/CENG536/Project2/pseudoCDD/reminder.o /home/tahsincan/Desktop/CENG536/Project2/pseudoCDD/reminder.mod.o ;  true

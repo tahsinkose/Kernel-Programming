@@ -1,0 +1,1 @@
+cmd_/home/tahsincan/Desktop/CENG536/Project2/helloLKM/hello.ko := ld -r -m elf_x86_64 -z max-page-size=0x200000 -T ./scripts/module-common.lds --build-id  -o /home/tahsincan/Desktop/CENG536/Project2/helloLKM/hello.ko /home/tahsincan/Desktop/CENG536/Project2/helloLKM/hello.o /home/tahsincan/Desktop/CENG536/Project2/helloLKM/hello.mod.o ;  true

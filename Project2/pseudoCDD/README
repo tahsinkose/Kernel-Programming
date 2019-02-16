@@ -1,0 +1,10 @@
+- Channel buffers grow indefinitely.
+- Truncation in write operations capped up with 4096 bytes.
+- Delayed write with mutual exclusion protection.
+- All IOCTL ops but REMIND_IOCQGETPENDING.
+- open(),release(),init(),exit(),unlocked_ioctl() completed.
+- All minor devices serve same functionality in isolation.
+
+In the data buffer implementation, channels are dedicated structures with their own write and read pointers and data buffers. Each reader has an array of sub pointers that are filled only through writer pointers of subscribed channels at the subscription time. They are carefully regulated in the case of channel buffer extension, since all wp/rp/data pointers do change.
+
+In read implementation, there is an additinoal semaphore for channels required. Also, kthreads are needed to be run for each subscribed channel. Main read thread blocks until min(req_number,4095) bytes are read from the subscribed channels. The latest finishing channel_sub thread acknowledges main read thread and read operation finishes. There are two possible race conditions for read_threads to experience. One is global race condition that is regulated by device semaphor, meaningly prevents the common data structures to be accessed at the same time. The other is a per-channel semaphore that regulates multiple-reader scenario. If there are multiple readers awaiting on a certain channel, then a write will acknowledge all of them. Since current implementation stores messages in dedicated channels, there isn't any data-loss possibility. Therefore these readers have to be got in line in a sequential manner.
